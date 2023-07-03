@@ -30,7 +30,6 @@
     <FormSettings>
         <Form xsi:type="ItemEdit">
             <DesktopSettings>
-                <!-- The JavaScript code should be hosted on a secure and trusted web server. -->
                 <SourceLocation DefaultValue="https://danilkorotenko.github.io/outlookAddinGetInfoAboutParent/index.html" />
             </DesktopSettings>
         </Form>
@@ -44,14 +43,17 @@
     </Rule>
 
     <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
-    <!-- On Send requires VersionOverridesV1_1 -->
     <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
         <Description resid="residAppDescription" />
         <Hosts>
             <Host xsi:type="MailHost">
+            	<Runtimes>
+					<Runtime resid="addinServerUrl">
+						<Override type="javascript" resid="JSRuntimeUrl"/>
+					</Runtime>
+				</Runtimes>
+
                 <DesktopFormFactor>
-                    <!-- The functionfile and function name to call on message send.  -->
-                    <!-- In this particular case the function validateMessage will be called within the JavaScript code referenced in addinServerUrl. -->
                     <ExtensionPoint xsi:type="LaunchEvent">
                         <LaunchEvents>
                             <LaunchEvent Type="OnNewMessageCompose" FunctionName="onMessageComposeHandler" />
@@ -63,8 +65,8 @@
         </Hosts>
         <Resources>
             <bt:Urls>
-                <!-- The JavaScript code is hosted on a secure and trusted web server. -->
                 <bt:Url id="addinServerUrl" DefaultValue="https://danilkorotenko.github.io/outlookAddinGetInfoAboutParent/index.html" ></bt:Url>
+                <bt:Url id="JSRuntimeUrl" DefaultValue="https://danilkorotenko.github.io/outlookAddinGetInfoAboutParent/runtime.js" ></bt:Url>
             </bt:Urls>
         </Resources>
     </VersionOverrides>
